@@ -319,12 +319,14 @@ echo "<p style=\"font-weight: bold;\">Task 14 </p><p></p>";
 function palindr($str = null)
 {
     if(!isset($str)) return;
+    echo $str;
     if(is_numeric($str)) {
         $str .= '';
         $str2 = strrev($str);
         return ($str2 === $str) ? "<p>Полиндром.</p>" : "<p>Не полиндром.</p>";
     } else if (is_string($str) && !is_numeric($str)){
         $str = mb_strtolower($str);
+        $str  = mb_ereg_replace("[\?\!,\.\-]","",$str);
         $str2 = explode(" ", $str);
         if(count($str2) === 1) {
             $str2 = join($str2);
@@ -346,7 +348,11 @@ function palindr($str = null)
         }
     }
 }
-echo palindr('Я иду с мечем судия');
+echo palindr('Я иду с мечем судия.');
+echo palindr('шалаш');
+echo palindr('Калаш');
+echo palindr('Was it a car or, a cat I saw?');
+echo palindr('1234');
 echo "<hr>";
 
 /*15. Создание функцию создания таблицы умножения в HTML-документе в 
